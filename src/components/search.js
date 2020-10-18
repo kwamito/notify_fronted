@@ -70,7 +70,7 @@ function Search() {
 
         )
     } else {
-        // document.getElementById('body').style.backgroundColor = 'pink'
+        document.getElementById('body').style.backgroundColor = 'pink'
         // document.body.style.backgroundImage = `url(${svg})`
         // document.body.style.backgroundRepeat = 'no-repeat';
         // document.body.style.backgroundAttachment = 'fixed'

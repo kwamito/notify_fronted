@@ -33,6 +33,7 @@ function Div() {
         }
         axios.delete(api).then((response) => {
             setNotes(response.data)
+            console.log(response.data)
             //notes.pop();
             console.log('Deleted')
             history.push('/')
@@ -47,6 +48,7 @@ function Div() {
                         <div className="font-bold"><Link to={`note/${note.id}`}>{note.title}</Link> </div>
 
                         <div><span className="float-right" id={note.id} name={note.title} onClick={handleClick} key={note.id}><DeleteIcon /> </span></div>
+                        <span className="mt-6">{note.time}</span>
                     </div>
                 ))}
             </div>)

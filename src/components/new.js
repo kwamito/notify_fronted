@@ -2,22 +2,33 @@ import React, { useState, useEffect } from 'react';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
+import SendIcon from '@material-ui/icons/Send';
+import CreateForm from './createForm'
+import ReactMarkdown from 'react-markdown'
+const HtmlMarkdown = require('react-markdown/with-html')
+const mdx = require('@mdx-js/mdx')
 
 function NewNoteForm() {
     const [note, setNote] = useState({
         title: '',
         body: '',
-        colour: '#F1C40F'
+        colour: '#F1C40F',
+        is_private: false
     });
     const history = useHistory()
     const [loggedIn, setLogged] = useState('false');
+    const [body, setBody] = useState('')
 
     const handleChange = e => {
         setNote({
             ...note,
             [e.target.name]: e.target.value
         })
+
     }
+
+
+
     useEffect(() => {
         const islogged = window.localStorage.getItem('isLoggedIn')
         setLogged(islogged);
@@ -38,9 +49,20 @@ function NewNoteForm() {
             console.log(response)
         })
     }
+    const handleCheck = e => {
+        console.log(e.currentTarget.value)
+        if (e.checked) {
+            console.log('yes')
+        }
+        else {
+            console.log('no')
+        }
+    }
+
 
     const logged = window.localStorage.getItem('isLoggedIn')
     if (logged == "true") {
+
         return (
             <div>
                 <div class='w-full flex flex-col items-center justify-center object-center mb-10'>
@@ -60,15 +82,24 @@ function NewNoteForm() {
                     </div>
                     <button type="submit" onClick={handleSubmit} class="p-4 w-64 mt-8 rounded-lg shadow-xl bg-gray-300">Submit</button>
                 </form> */}
-
-
-
+                    <h3 class='font-sans font-bold text-lg'>Preview</h3>
+                    <div>
+                        <ReactMarkdown source={note.title} escapeHtml={false} />
+                    </div>
+                    <div>
+                        <ReactMarkdown source={note.body} escapeHtml={false} />
+                    </div>
                 </div>
 
-                <form class='bottom-0 justify-end mb-0'>
-                    <input class='bottom-0' type="text" placeholder="markdown field .." name="username" />
-                </form>
+                <CreateForm handleChange={handleChange} handleSubmit={handleSubmit} />
+                <div>
+                    <form>
+                        <input type="checkbox" handleChange={handleCheck} value={false} />
+                    </form>
+                </div>
+
             </div>
+
 
         )
 

@@ -4,8 +4,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import { Link, useHistory } from 'react-router-dom'
+import MDX from '@mdx-js/mdx'
 const HtmlMarkdown = require('react-markdown/with-html')
 const htmlParser = require('react-markdown/plugins/html-parser')
+const mdx = require('@mdx-js/mdx')
 
 
 const parseHtml = htmlParser({
@@ -31,15 +33,31 @@ function Detail({ match }) {
             //setNote(response.data)
             console.log(response)
             setNote(response.data)
+            const bodyN = mdx('__ me')
+            console.log(bodyN)
         })
     }, [])
     if (isLoggedIn == undefined || isLoggedIn == 'false' || isLoggedIn == false) {
         history.push('/login')
     } else {
+
         return (
             <div className="grid grid-cols-12">
-                <div class='p-24'>{note.body}</div>
-                {note.title}
+                <div className="col-start-2 col-end-11">
+                    <div className="p-2 mt-5 font-bold text-lg">
+                        <ReactMarkdown source={note.title} />
+                    </div>
+                    <div className='text-base'>
+
+                        <HtmlMarkdown source={note.body} escapeHtml={false} astPlugins={[parseHtml]} />
+
+
+                    </div>
+
+                </div>
+
+
+
             </div>
         )
     }

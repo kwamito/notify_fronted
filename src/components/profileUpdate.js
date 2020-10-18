@@ -61,7 +61,7 @@ function ProfileUpdate() {
             <div class='grid grid-cols-12 gap-2'>
                 <div class='col-start-2 col-end-12 sm:col-start-3 sm:col-end-11 md:col-start-3 md:col-end-11 lg:col-start-4 lg:col-end-10 xl:col-start-4 xl:col-end-10'>
                     <div class=''>
-                        <form onSubmit={handleSubmit} class='bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 p-8 pt-16 pb-8 h-full mt-20 sm:pt-0 md:p-20 lg:p-30 sm:p-24 xl:p-24 rounded-lg shadow-lg w-full mb-16'>
+                        <form onSubmit={handleSubmit} class='bg-gray-200 p-8 pt-16 pb-8 h-full mt-20 sm:pt-0 md:p-20 lg:p-30 sm:p-24 xl:p-24 rounded-lg shadow-lg w-full mb-16'>
                             <div class='mb-4 mt-5 pt-6'>
                                 <img src={profile.image_url} style={{ borderRadius: '50%' }} class='w-6/12 h-auto max-w-sm rounded-full flex items-center justify-center ml-auto mr-auto' alt='' />
                             </div>
@@ -79,10 +79,10 @@ function ProfileUpdate() {
                                 <input type='text' class='border-0 flex-no-wrap shadow-xl outline-none rounded-lg mb-6 w-full min-w-full sm:w-full lg:w-full md:w-full xl:w-full m-auto align-middle p-4' onChange={handleChange} name='image_url' placeholder='Profile image url' value={profile.image_url} />
                             </div>
                             <div>
-                                <textarea class='w-full shadow-xl rounded-lg mb-6 p-10 outline-none' value={profile.bio} onChange={handleChange} placeholder='Bio' name='bio' />
+                                <textarea class='w-full shadow-xl rounded-lg mb-6 p-10 outline-none' value={profile.bio} onChange={handleChange} placeholder='Bio **markdown field **' name='bio' />
                             </div>
                             <div>
-                                <button type="submit" class='p-4 bg-green-500 w-full rounded-lg hover:bg-green-600 shadow-xl text-lg font-bold font-sans'> Submit  <PublishIcon style={{ marginBottom: 4 }} /></button>
+                                <button type="submit" class='p-4 bg-green-500 w-full rounded-lg hover:bg-green-600 shadow-xl text-lg font-bold font-sans'> Save Changes  </button>
                             </div>
                         </form>
                     </div>

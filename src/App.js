@@ -16,6 +16,9 @@ import ProfileDetail from './components/profile'
 import ProfileUpdate from './components/profileUpdate'
 import Logout from './components/logout'
 import Search from './components/search'
+import Followers from './components/followers'
+import UserSearch from './components/userSearch'
+import Flex from './components/flex'
 
 
 function App() {
@@ -45,6 +48,9 @@ function App() {
         <Route path='/profile/update' exact component={ProfileUpdate} />
         <Route path='/logout' exact component={Logout} />
         <Route path='/search' component={Search} />
+        <Route path='/followers' component={Followers} />
+        <Route path='/user/search' component={UserSearch} />
+        <Route path='/flex' component={Flex} />
       </Switch>
     </Router>
   );

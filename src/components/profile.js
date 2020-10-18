@@ -15,7 +15,8 @@ function ProfileDetail() {
         'last_name': '',
         'image_url': '',
         'bio': '',
-        'notes_count': ''
+        'notes_count': '',
+        'follower_count': ''
     })
     const history = useHistory()
     const [loggedIn, setLoggedIn] = useState(false);
@@ -63,14 +64,15 @@ function ProfileDetail() {
 
 
                 </div>
+                <hr class='w-full mt-2 bg-gray-300' />
 
-                <div class='grid grid-cols-12 gap-2 text-center mt-12'>
+                <div class='grid grid-cols-12 gap-2 text-center mt-2'>
                     <div class='font-bold p-4 col-start-2 col-end-4'>
                         Followers
                 </div>
                     <div class='font-bold p-2 ml-3 text-gray-600 row-start-2 row-end-2 col-start-2 col-end-4'>
-                        233
-                </div>
+                        {profile.follower_count}
+                    </div>
 
                     <div class='font-bold p-4 col-start-6 col-end-8'>
                         Notes
@@ -87,9 +89,14 @@ function ProfileDetail() {
                 </div>
 
                 </div>
-                <hr class='w-full font-bold text-3xl mt-4' />
+                <hr class='w-full mt-2 bg-gray-300' />
+
+                <div>
+                    
+                </div>
 
             </div>
+            
         )
     } else {
         history.push('/login')

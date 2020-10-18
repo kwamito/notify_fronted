@@ -26,78 +26,12 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import UpdateIcon from '@material-ui/icons/Update';
 import { Link } from 'react-router-dom';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import PeopleIcon from '@material-ui/icons/People';
 
 
-// function loginRenderList(loggedIn) {
-//   if (loggedIn !== true || loggedIn === false || loggedIn === undefined) {
-//     console.log(`Here we go again the variable is ${loggedIn}`)
-//     return (
-
-//       < div >
-//         <ListItem button key={'Login'}>
-//           <ListItemIcon> <MailIcon /></ListItemIcon>
-//           <ListItemText primary={'Login'} />
-//         </ListItem>
-//         <ListItem button key={'Register'}>
-//           <ListItemIcon> <MailIcon /></ListItemIcon>
-//           <ListItemText primary={'Register'} />
-//         </ListItem>
-//         <ListItem button key={'Register'}>
-//           <ListItemIcon> <MailIcon /></ListItemIcon>
-//           <Link to='/login'><ListItemText primary={'Register'} /></Link>
-//         </ListItem>
-//       </div >
-//     )
-//   }
-//   else if (loggedIn === true) {
-//     console.log(`The logged in variable prints ${loggedIn}`)
-//     return (
-//       <div>
-//         <Link to={'/logout'}>
-//           <ListItem button key={'Logout'}>
-//             <ListItemIcon> <ExitToAppSharpIcon /> </ListItemIcon>
-//             <ListItemText primary={'Logout'} />
-
-//           </ListItem>
-//         </Link>
-//         <Link to={'/'}>
-//           <ListItem button key={'Notes'}>
-//             <ListItemIcon> <FormatListBulletedSharpIcon /> </ListItemIcon>
-
-//             <ListItemText primary={'View Notes'} />
-
-
-//           </ListItem>
-//         </Link>
-
-//         <ListItem button key={'Mate'}>
-//           <ListItemIcon> <PeopleAltSharpIcon /> </ListItemIcon>
-//           <ListItemText primary={'Mates'} />
-//         </ListItem>
-
-//         <ListItem button key={'Follow'}>
-//           <ListItemIcon> <GroupAddOutlinedIcon /></ListItemIcon>
-//           <ListItemText primary={'Follow mate'} />
-//         </ListItem>
-
-//         <ListItem button key={'Search'}>
-//           <ListItemIcon> <SearchIcon /></ListItemIcon>
-//           <ListItemText primary={'Search Notes'} />
-//         </ListItem>
-
-//         <ListItem button key={'Profile'}>
-//           <ListItemIcon> <AccountCircleIcon /></ListItemIcon>
-//           <ListItemText primary={'View Profile'} />
-//         </ListItem>
-
-//         <ListItem button key={'Update Profile'}>
-//           <ListItemIcon> <UpdateIcon /></ListItemIcon>
-//           <ListItemText primary={'Update Profile'} />
-//         </ListItem>
-//       </div>
-//     )
-//   }
-// }
 
 
 const drawerWidth = 240;
@@ -111,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: 'orange'
+    backgroundColor: 'blue'
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -184,6 +118,9 @@ export default function PersistentDrawerLeft(props) {
     setLoggedIn(isLoggedIn)
 
   })
+  const someStyle = {
+    float: 'left'
+  }
 
 
 
@@ -211,8 +148,23 @@ export default function PersistentDrawerLeft(props) {
           <Typography variant="h6" noWrap>
             Cryptonotes
           </Typography>
+
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            style={someStyle}
+            color="inherit"
+          >
+
+          </IconButton>
+          <div class="float-right flex-row">
+            <div class="float-right justify-end">Logout</div>
+          </div>
         </Toolbar>
+
       </AppBar>
+
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -296,15 +248,38 @@ export default function PersistentDrawerLeft(props) {
             </div>
           }
 
+
         </List>
         <Divider />
         <List>
-          <Link to={'/note'}>
-            <ListItem button key={'Profile'}>
-              <ListItemIcon> <AddCircleOutlineIcon /></ListItemIcon>
-              <ListItemText primary={'Create Note'} />
-            </ListItem>
-          </Link>
+          {loggedIn == "true" ?
+            <div>
+              <Link to={'/note'}>
+                <ListItem button key={'Profile'}>
+                  <ListItemIcon> <AddCircleOutlineIcon /></ListItemIcon>
+                  <ListItemText primary={'Create Note'} />
+                </ListItem>
+              </Link>
+
+              <Link to={'/followers'}>
+                <ListItem button key={'Followers'}>
+                  <ListItemIcon> <PeopleIcon /></ListItemIcon>
+                  <ListItemText primary={'Followers'} />
+                </ListItem>
+              </Link>
+
+              <Link to={'/user/search'}>
+                <ListItem button key={'Search Users'}>
+                  <ListItemIcon> <PeopleIcon /></ListItemIcon>
+                  <ListItemText primary={'Search Users'} />
+                </ListItem>
+              </Link>
+            </div>
+
+
+            :
+            <div></div>
+          }
         </List>
       </Drawer>
       <main
